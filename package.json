@@ -1,0 +1,27 @@
+{
+  "name": "@sanghak/dokdo",
+  "version": "0.1.0",
+  "description": "javascript class builder",
+  "main": "builder.js",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "test:file": "jest --",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SangHakLee/dokdo.git"
+  },
+  "keywords": [
+    "lombok"
+  ],
+  "author": "sanghaklee <code.ryan.lee@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/SangHakLee/dokdo/issues"
+  },
+  "homepage": "https://github.com/SangHakLee/dokdo#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
