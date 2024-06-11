@@ -8,6 +8,11 @@
     "test:file": "jest --",
     "test": "jest"
   },
+  "files": [
+    "builder.js.js",
+    "package.json",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SangHakLee/dokdo.git"
