@@ -1,6 +1,6 @@
 {
   "name": "@sanghak/dokdo",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "javascript class builder",
   "main": "builder.js",
   "scripts": {
