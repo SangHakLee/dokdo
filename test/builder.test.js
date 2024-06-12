@@ -7,6 +7,14 @@ class User extends Builder(class {
         this.email = builder.email;
         this.money = builder.money;
     }
+
+    getName() {
+        return `${this.firstName}, ${this.lastName}`
+    }
+
+    static dummy() {
+        return "dummy";
+    }
 }) {}
 
 test("Builder", () => {
@@ -16,12 +24,14 @@ test("Builder", () => {
         .email('code.ryan.lee@gmail.com')
         .money(1000000000)
         .build();
-        console.log("user ", user);
 
     expect(user.firstName).toBe('sanghak');
     expect(user.lastName).toBe('lee');
     expect(user.email).toBe('code.ryan.lee@gmail.com');
     expect(user.money).toBe(1000000000);
+
+    expect(user.getName()).toBe('sanghak, lee');
+    expect(User.dummy()).toBe('dummy');
 });
 
 test("Builder with undefined member", () => {
@@ -30,12 +40,12 @@ test("Builder with undefined member", () => {
         .email('code.ryan.lee@gmail.com')
         .money(1000000000)
         .build();
-    console.log("user ", user);
 
     expect(user.firstName).toBe('sanghak');
     expect(user.lastName).toBe(undefined);
     expect(user.email).toBe('code.ryan.lee@gmail.com');
     expect(user.money).toBe(1000000000);
+    expect(user.getName()).toBe('sanghak, undefined');
 });
 
 test("constructor", () => {
@@ -45,6 +55,7 @@ test("constructor", () => {
     expect(user.lastName).toBe('lee');
     expect(user.email).toBe('code.ryan.lee@gmail.com');
     expect(user.money).toBe(1000000000);
+    expect(user.getName()).toBe('sanghak, lee');
 });
 
 test("named constructor", () => {
@@ -59,6 +70,7 @@ test("named constructor", () => {
     expect(user.lastName).toBe('lee');
     expect(user.email).toBe('code.ryan.lee@gmail.com');
     expect(user.money).toBe(1000000000);
+    expect(user.getName()).toBe('sanghak, lee');
 });
 
 test("named constructor with undefined member", () => {
@@ -72,4 +84,5 @@ test("named constructor with undefined member", () => {
     expect(user.lastName).toBe(undefined);
     expect(user.email).toBe('code.ryan.lee@gmail.com');
     expect(user.money).toBe(1000000000);
+    expect(user.getName()).toBe('sanghak, undefined');
 });

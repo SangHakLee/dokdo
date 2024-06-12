@@ -12,7 +12,7 @@ class BuilderBase {
 }
 
 function Builder(BaseClass) {
-    return class extends BuilderBase {
+    const BuilderClass = class extends BuilderBase {
         constructor(...args) {
             super();
             this.Class = BaseClass;
@@ -68,6 +68,31 @@ function Builder(BaseClass) {
             return this;
         }
     };
+
+    // 원래 클래스의 정적 메소드를 BuilderClass에 복사합니다.
+    Object.getOwnPropertyNames(BaseClass).forEach(name => {
+        if (name !== 'prototype') {
+            Object.defineProperty(BuilderClass, name, Object.getOwnPropertyDescriptor(BaseClass, name));
+        }
+    });
+
+    return new Proxy(BuilderClass, {
+        construct(target, args) {
+            if (args.length === 1 && typeof args[0] === 'object' && args[0] !== null && !Array.isArray(args[0])) {
+                return new BaseClass(args[0]);
+            } else if (args.length > 1) {
+                const instance = new BaseClass({});
+                const props = Object.keys(instance);
+                props.forEach((prop, index) => {
+                    if (index < args.length) {
+                        instance[prop] = args[index];
+                    }
+                });
+                return instance;
+            }
+            return Reflect.construct(target, args);
+        }
+    });
 }
 
 module.exports = {

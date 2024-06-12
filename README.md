@@ -20,6 +20,14 @@ class User extends Builder(class {
         this.email = builder.email;
         this.money = builder.money;
     }
+
+    getName() {
+        return `${this.firstName}, ${this.lastName}`
+    }
+
+    static dummy() {
+        return "dummy";
+    }
 }) {}
 
 
@@ -36,10 +44,15 @@ const user = new User('sanghak', 'lee', 'code.ryan.lee@gmail.com', 1000000000);
 ```
 
 ```javascript
-    const user = new User({
+const user = new User({
     firstName: 'sanghak',
     lastName: 'lee',
     email: 'code.ryan.lee@gmail.com',
     money: 1000000000
 });
+```
+
+```javascript
+user.getName() // return "sanghak, lee"
+User.dummy() // return "dummy"
 ```
